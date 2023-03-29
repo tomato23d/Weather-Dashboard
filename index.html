@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
       <!-- <link rel="stylesheet" href="./assets/style/style.css"/>  -->
@@ -22,14 +22,15 @@
        
       <div class = "container-search">
 
-             <form>
+             <form id = "search-form">
           
                   <label class="form-label" > Search for a City : </label>
                   <br>
-                  <input type = "text" placeholder  = "city" id = "input_make"/>
+                  <input type = "text" placeholder  = "city" id = "input-form"/>
                   <br>
                   <div class = "btn-center">
-                  <p id = "btn-center"><button id = "search-api"> Search  :</button></p>
+                  <p id = "btn-center"><button id = "search-apig"> Search by geo :</button></p>
+                  <p id = "btn-center"><button id = "search-apicity"> Search by city :</button></p>
                   </div>
              </form>       
       </div>  
@@ -43,7 +44,7 @@
     </section>
   </div>
 </main>
-      <!-- <script src = "./assets/scripts/tyre_array.js"></script>-->
+      
        <script src = "./assets/scripts/script.js"></script>
        
             
