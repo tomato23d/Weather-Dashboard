@@ -7,75 +7,78 @@ var outputArea = document.querySelector(".container-output");
 var cityInput = document.getElementById("input-form");
 
 
-//var city = "Paris";
+
 var myKey = "612789a87d35fc20d850942f4f954d5d";
+var weatherGeoUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=-33.8679&lon=151.2073&appid=bf4cae612aea9c8fdcead6bf50e7112e';
 
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=-33.8679&lon=151.2073&appid=bf4cae612aea9c8fdcead6bf50e7112e';
+const cityForecast = []; 
+var feels = " ";
+var temp = " ";
+var main = " ";
+var wind = " ";
+var humidity = " ";
 
-const cityForecast = [];
 
-
-function getApi(event){
-   event.preventDefault();
-    weatherUrl
-    
-   fetch(weatherUrl)
-    .then(function(response){
-      return response.json();
-         })
-    .then(function(data){
-        console.log("weather", data)
-        for (var i = 0; i < data.length; i++) {
-                h5par.textContent = data[i].name;
-        }
-        })
-     };
-
+var currentTime = dayjs().format('D.MMMM.YYYY_H:mm');
 
 
      function getApiCity(event){
         event.preventDefault();
-       // clearSearch();
-
+   
         var city = cityInput.value.trim();
         console.log(city);
         var weatherCityUrl = 'https://api.openweathermap.org/data/2.5/forecast?q='+ city+ '&appid=' + myKey;
-        //weatherCityUrl;
+        
          
-        fetch(weatherUrl)
+        fetch(weatherCityUrl)
          .then(function(response){
            return response.json();
               })
          .then(function(Citydata){
              console.log("weatherCity", Citydata)
              for (var i = 0; i < 40; i++) {
-                var par1 = document.createElement("p");
-                par1.textContent = Citydata.list[i].dt_txt;
-                outputArea.appendChild(par1);
-                var day =  Citydata.list[i].dt_txt;
-                var day2 = dayjs(day).format('D/MMMM/YYYY');
-                var day_time = dayjs(day).format('H');
-                console.log(day, "  ", day2, "  ", day_time);
-               // var day1 = new Date(day);
-               // console.log(typeof(day1), "  ", day1);
-
-               var dayForecastArray = {
-                    city: city,
-                    day2: day_time,
-
-               }
-               console.log(dayForecastArray);
-              // var forecastString = JSON.stringify(dayForecastArray);
+                
+                var day = dayjs(Citydata.list[i].dt_txt).format('D/MMMM/YYYY');
+                var time = dayjs(Citydata.list[i].dt_txt).format('H');
+               
+               
+               var day1 = Citydata.list[i].dt_txt.substring(8,10);
+               var time1 = Citydata.list[i].dt_txt.substring(11,13);
+              // console.log(i +" day : ", day1, " time : ", time1);
               
-               cityForecast.push(dayForecastArray);
-               console.log(cityForecast);
-        }   
-            })};
+               if (time1 === "09"){
+                  
+                  //console.log(i + "nine o'clock  " + time1);
+           
+                var dayForecastArray = {
+                             city: city,
+                             day: day,
+                             time: time,
+                             feels: Citydata.list[i].main.feels_like,
+                             temp: Citydata.list[i].main.temp,
+                             humidity: Citydata.list[i].main.humidity,
+                             main: Citydata.list[i].weather[0].description,
+                             wind: Citydata.list[i].wind.speed,
+                        }
+                        localStorage.setItem(city+day1+time1, JSON.stringify(dayForecastArray));
+         
+                 }
+             
+               }   
+            })};            
+
+               //  var par1 = document.createElement("p");
+               //  par1.textContent = day;
+               //  outputArea.appendChild(par1);
+                      
+               // cityForecast.push(dayForecastArray);
+               // console.log(cityForecast);
+       
+// function printForecast(day, time){console.log("hello")};
+
+// function clearSearch(){
+//     cityInput.value = " ";
+//    par1.textContent = " ";};
 
 
-//function clearSearch(){
- //   cityInput.value = " ";
-   // par1.textContent = " ";}
-
-btnSearch.addEventListener('click', getApi);
 btnByCitySearch.addEventListener('click', getApiCity);
