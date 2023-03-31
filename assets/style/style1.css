@@ -1,5 +1,5 @@
-* { --original-theme-background: rgb(239, 255, 97);
-    --original-theme-background_a: rgb(185, 202, 32);
+* { --original-theme-background: rgb(245, 252, 178);
+    --original-theme-background_a: rgb(246, 251, 195);
     --original-theme-background1: rgb(204, 178, 210);
     --original-theme-background2: rgb(138, 173, 110);
 
@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 
-.class_a {
+.class_heading {
     padding-left: 20px;
     padding-right: 20px;
     background-color: var(--original-theme-background_a);
@@ -20,12 +20,12 @@ main {display: flex;};
 aside {flex: 20%};
 section {flex: 80%};
 
+/*
 .container-outer {
   width: 98%;
-}
+}*/
 
 .container-search {
-  
   width: 100%;
   margin-left: 1%;
   padding-left: 1%;
@@ -33,12 +33,19 @@ section {flex: 80%};
 }
 
 .container-output {
+  width: 100%;
   margin-right: 1%;
   padding-right: 1%;
-  background-color: var(--original-theme-background2);
+  background-color: var(--original-theme-background_a);
 }
 
-.headings {color:rgb(131, 232, 195);
+.board {
+  border: solid gray;
+}
+
+.headings {color:rgb(49, 50, 37);
+            font-size:x-large;
+            text-align: center;
 }
 .btn-center {
   display: flex;
