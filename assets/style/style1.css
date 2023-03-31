@@ -28,24 +28,47 @@ section {flex: 80%};
 .container-search {
   width: 100%;
   margin-left: 1%;
+  margin-right: 1%;
   padding-left: 1%;
   background-color: var(--original-theme-background1);
 }
 
 .container-output {
   width: 100%;
+  margin-left: 1%;
   margin-right: 1%;
   padding-right: 1%;
   background-color: var(--original-theme-background_a);
 }
 
 .board {
-  border: solid gray;
+  border: solid 3px  gray;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card1 {
+  flex: 0 0 200;
+  padding: 10px;
+  border: solid 2px gray;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .headings {color:rgb(49, 50, 37);
             font-size:x-large;
             text-align: center;
+}
+
+h5 {
+ size: 200px;
+ color: red;
+ font-size: x-large;
+
 }
 .btn-center {
   display: flex;
