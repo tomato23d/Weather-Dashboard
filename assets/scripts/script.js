@@ -5,6 +5,7 @@ function getWeather(){
    
    var outputText = document.getElementById("h5par");
    var outputArea = document.querySelector(".container-output");
+   var cardOutput1 = document.getElementById("c1");
    
    var cityInput = document.getElementById("input-form");
    
@@ -19,7 +20,7 @@ function getWeather(){
    var main = " ";
    var wind = " ";
    var humidity = " ";
-   var card = 1;
+   var card = 0;
    
    let date = new Date();
    console.log(date.getDate());
@@ -31,7 +32,7 @@ function getWeather(){
            event.preventDefault();
       
            var city = cityInput.value.trim();
-           console.log(city);
+           
            var weatherCityUrl = 'https://api.openweathermap.org/data/2.5/forecast?q='+ city+ '&appid=' + myKey;
            
             
@@ -46,17 +47,12 @@ function getWeather(){
                    var day = dayjs(Citydata.list[i].dt_txt).format('D/MMMM/YYYY');
                    var time = dayjs(Citydata.list[i].dt_txt).format('H');
                   // console.log(date.getDate()+"  " + day+" "+ day1);
-   
-                
-                  
+  
                   var day1 = Citydata.list[i].dt_txt.substring(8,10);
                   var time1 = Citydata.list[i].dt_txt.substring(11,13);
-                 // console.log(i +" day : ", day1, " time : ", time1);
-               //  if(date.getDate() != day1){card = 2};
+                
                   if (time1 === "09"){
-                     
-                     //console.log(i + "nine o'clock  " + time1);
-              
+                              card = card +1;
                    var dayForecastArray = {
                                 city: city,
                                 card: card,
@@ -68,8 +64,16 @@ function getWeather(){
                                 main: Citydata.list[i].weather[0].description,
                                 wind: Citydata.list[i].wind.speed*1.61,
                            }
-                          // localStorage.setItem(city+day1+time1, JSON.stringify(dayForecastArray));
-                           localStorage.setItem("1", JSON.stringify(dayForecastArray));
+                           console.log(day1);
+
+                           var par1 = document.createElement("p");
+                           par1.textContent = day;
+                          cardOutput1.appendChild(par1);     
+
+
+                           localStorage.setItem(card, JSON.stringify(dayForecastArray));
+                        //   localStorage.setItem(city+day1+"|"+i, JSON.stringify(dayForecastArray));
+                       //    localStorage.setItem("1", JSON.stringify(dayForecastArray));
                 }
                  
                   }   
@@ -77,18 +81,17 @@ function getWeather(){
    
    // function printWeather(){
       
-   //    var knewWeather = JSON.parse(localStorage.getItem("1"));
+   //var knewWeather = JSON.parse(localStorage.getItem(day1));
+  // console.log(knewWeather);
    //    outputText.textContent = "How it looks outside : "+knewWeather.main;
    //    document.querySelector("#output-1").textContent = "Temperature : "+knewWeather.temp;
    //    document.querySelector("#output-2").textContent = "Humidity : "+ knewWeather.humidity;
    //    document.querySelector("#output-3").textContent = "Wind speed : "+knewWeather.wind;
-   //    console.log(knewWeather.main);
+   //    
    // }
    
    // printWeather();
-                  //  var par1 = document.createElement("p");
-                  //  par1.textContent = day;
-                  //  outputArea.appendChild(par1);
+                 
                          
                   // cityForecast.push(dayForecastArray);
                   // console.log(cityForecast);
