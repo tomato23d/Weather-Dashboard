@@ -63,26 +63,30 @@ function getWeather(){
                                 humidity: Citydata.list[i].main.humidity,
                                 main: Citydata.list[i].weather[0].description,
                                 wind: Citydata.list[i].wind.speed*1.61,
-                           }
-                           console.log(day1);
-
-                           var par1 = document.createElement("p");
-                           par1.textContent = day;
-                          cardOutput1.appendChild(par1);     
-
-
+                           };
                            localStorage.setItem(card, JSON.stringify(dayForecastArray));
                         //   localStorage.setItem(city+day1+"|"+i, JSON.stringify(dayForecastArray));
                        //    localStorage.setItem("1", JSON.stringify(dayForecastArray));
+                       printWeather(card);
                 }
-                 
+               
                   }   
                })};            
    
-   // function printWeather(){
-      
-   //var knewWeather = JSON.parse(localStorage.getItem(day1));
-  // console.log(knewWeather);
+   function printWeather(card){
+      console.log(card);
+     // for (card = 1; card < 6; card++) {
+         var knewWeather = JSON.parse(localStorage.getItem(card));
+        if(card === 1) {
+         console.log(knewWeather);
+         console.log(knewWeather.day)};
+         var par = document.createElement("p");
+   //    par1.textContent = day;
+   //   cardOutput1.appendChild(par1);  
+   };   
+
+
+   //
    //    outputText.textContent = "How it looks outside : "+knewWeather.main;
    //    document.querySelector("#output-1").textContent = "Temperature : "+knewWeather.temp;
    //    document.querySelector("#output-2").textContent = "Humidity : "+ knewWeather.humidity;
@@ -90,19 +94,12 @@ function getWeather(){
    //    
    // }
    
-   // printWeather();
-                 
-                         
-                  // cityForecast.push(dayForecastArray);
-                  // console.log(cityForecast);
-          
-   // function printForecast(day, time){console.log("hello")};
-   
+ 
    // function clearSearch(){
    //     cityInput.value = " ";
    //    par1.textContent = " ";};
    
    
    btnByCitySearch.addEventListener('click', getApiCity);
-   };
+}
    getWeather();
