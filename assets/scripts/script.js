@@ -45,7 +45,7 @@ function getWeather(){
                    
                    var day = dayjs(Citydata.list[i].dt_txt).format('D/MMMM/YYYY');
                    var time = dayjs(Citydata.list[i].dt_txt).format('H');
-                  // console.log(date.getDate()+"  " + day+" "+ day1);
+                  
   
                   var day1 = Citydata.list[i].dt_txt.substring(8,10);
                   var time1 = Citydata.list[i].dt_txt.substring(11,13);
@@ -74,74 +74,36 @@ function getWeather(){
    
    function printCard(card){
       console.log(card);
-     // for (card = 1; card < 6; card++) {
+     
          var knowWeather = JSON.parse(localStorage.getItem(card));
          if(card === 1) {
        
-            
+         var cityPrint = document.createElement("p");  
          var par = document.createElement("p");
          var par1 = document.createElement("p");
          var par2 = document.createElement("p");
          var par3 = document.createElement("p");
-         
+ 
+         cityPrint.textContent = knowWeather["city"];
          par.textContent = knowWeather["day"];
          par1.textContent = knowWeather["main"];
          var t = knowWeather["temp"].toFixed(2);
          par2.textContent = "Temp: " +t +"'C";
          par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
         
+         outputToday.appendChild(cityPrint);
          outputToday.appendChild(par);
          outputToday.appendChild(par1);
          outputToday.appendChild(par2);
          outputToday.appendChild(par3);    
       }  
       
-      else if (card === 2){
-         var cardOutput = document.getElementById("2");
-         var par = document.createElement("p");
-         var par1 = document.createElement("p");
-         var par2 = document.createElement("p");
-         var par3 = document.createElement("p");
-        
-         par.textContent = knowWeather["day"];
-         par1.textContent = knowWeather["main"];
-         var t = knowWeather["temp"].toFixed(2);
-         par2.textContent = "Temp: " +t +"'C";
-         par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
-        
-         cardOutput.appendChild(par);
-         cardOutput.appendChild(par1);
-         cardOutput.appendChild(par2);
-         cardOutput.appendChild(par3); 
+      else if (card >= 2 && card <= 5){
+         var cardOutput = document.getElementById(card);
+         printWeather(card, cardOutput);  
         }
 
-        else if (card === 3){
-         var cardOutput = document.getElementById("3");
-         var par = document.createElement("p");
-         var par1 = document.createElement("p");
-         var par2 = document.createElement("p");
-         var par3 = document.createElement("p");
-        
-         par.textContent = knowWeather["day"];
-         par1.textContent = knowWeather["main"];
-         var t = knowWeather["temp"].toFixed(2);
-         par2.textContent = "Temp: " +t +"'C";
-         par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
-        
-         cardOutput.appendChild(par);
-         cardOutput.appendChild(par1);
-         cardOutput.appendChild(par2);
-         cardOutput.appendChild(par3); 
-        }
-        else if (card === 4){
-         var cardOutput = document.getElementById("4");
-         printWeather();  
-         cardOutput.appendChild(par);
-         cardOutput.appendChild(par1);
-         cardOutput.appendChild(par2);
-         cardOutput.appendChild(par3); 
-   };  
-} 
+
 
    function printWeather(){
       var knowWeather = JSON.parse(localStorage.getItem(card));
@@ -156,14 +118,14 @@ function getWeather(){
       par2.textContent = "Temp: " +t +"'C";
       par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
      
-      return
-      // cardOutput.appendChild(par);
-      // cardOutput.appendChild(par1);
-      // cardOutput.appendChild(par2);
-      // cardOutput.appendChild(par3);
+      
+       cardOutput.appendChild(par);
+       cardOutput.appendChild(par1);
+       cardOutput.appendChild(par2);
+       cardOutput.appendChild(par3);
 
    };
-   
+} ;  
  
    // function clearSearch(){
    //     cityInput.value = " ";

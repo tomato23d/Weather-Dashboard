@@ -3,10 +3,8 @@ function getWeather(){
    var btnSearch = document.getElementById("search-apig");
    var btnByCitySearch = document.getElementById("search-apicity");
    
-   var outputText = document.getElementById("h5par");
+   var outputToday = document.getElementById("today");
    var outputArea = document.querySelector(".container-output");
-   var cardOutput1 = document.getElementById("c1");
-   var cardOutput2 = document.getElementById("2");
    
    var cityInput = document.getElementById("input-form");
    
@@ -68,18 +66,19 @@ function getWeather(){
                            localStorage.setItem(card, JSON.stringify(dayForecastArray));
                         //   localStorage.setItem(city+day1+"|"+i, JSON.stringify(dayForecastArray));
                        //    localStorage.setItem("1", JSON.stringify(dayForecastArray));
-                       printWeather(card);
+                       printCard(card);
                 }
                
                   }   
                })};            
    
-   function printWeather(card){
+   function printCard(card){
       console.log(card);
-     // for (card = 1; card < 6; card++) {
+     
          var knowWeather = JSON.parse(localStorage.getItem(card));
          if(card === 1) {
-                 
+       
+            
          var par = document.createElement("p");
          var par1 = document.createElement("p");
          var par2 = document.createElement("p");
@@ -91,13 +90,14 @@ function getWeather(){
          par2.textContent = "Temp: " +t +"'C";
          par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
         
-         cardOutput1.appendChild(par);
-         cardOutput1.appendChild(par1);
-         cardOutput1.appendChild(par2);
-         cardOutput1.appendChild(par3);    
+         outputToday.appendChild(par);
+         outputToday.appendChild(par1);
+         outputToday.appendChild(par2);
+         outputToday.appendChild(par3);    
       }  
       
       else if (card === 2){
+         var cardOutput = document.getElementById("2");
          var par = document.createElement("p");
          var par1 = document.createElement("p");
          var par2 = document.createElement("p");
@@ -109,14 +109,14 @@ function getWeather(){
          par2.textContent = "Temp: " +t +"'C";
          par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
         
-         cardOutput2.appendChild(par);
-         cardOutput2.appendChild(par1);
-         cardOutput2.appendChild(par2);
-         cardOutput2.appendChild(par3); 
+         cardOutput.appendChild(par);
+         cardOutput.appendChild(par1);
+         cardOutput.appendChild(par2);
+         cardOutput.appendChild(par3); 
         }
 
         else if (card === 3){
-         var cardOutput3 = document.getElementById("3");
+         var cardOutput = document.getElementById("3");
          var par = document.createElement("p");
          var par1 = document.createElement("p");
          var par2 = document.createElement("p");
@@ -128,14 +128,41 @@ function getWeather(){
          par2.textContent = "Temp: " +t +"'C";
          par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
         
-         cardOutput3.appendChild(par);
-         cardOutput3.appendChild(par1);
-         cardOutput3.appendChild(par2);
-         cardOutput3.appendChild(par3); 
+         cardOutput.appendChild(par);
+         cardOutput.appendChild(par1);
+         cardOutput.appendChild(par2);
+         cardOutput.appendChild(par3); 
         }
-   };   
+        else if (card === 4){
+         var cardOutput = document.getElementById("4");
+         printWeather(card, cardOutput);  
+   } 
+      else if (card === 5){
+         var cardOutput = document.getElementById("5");
+         printWeather(card, cardOutput);  
+   } 
 
+   function printWeather(){
+      var knowWeather = JSON.parse(localStorage.getItem(card));
+      var par = document.createElement("p");
+      var par1 = document.createElement("p");
+      var par2 = document.createElement("p");
+      var par3 = document.createElement("p");
+     
+      par.textContent = knowWeather["day"];
+      par1.textContent = knowWeather["main"];
+      var t = knowWeather["temp"].toFixed(2);
+      par2.textContent = "Temp: " +t +"'C";
+      par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
+     
+      
+       cardOutput.appendChild(par);
+       cardOutput.appendChild(par1);
+       cardOutput.appendChild(par2);
+       cardOutput.appendChild(par3);
 
+   };
+} ;  
  
    // function clearSearch(){
    //     cityInput.value = " ";
