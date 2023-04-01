@@ -58,18 +58,21 @@ section {flex: 80%};
   margin-left: 5px;
   margin-right: 5px;
 }
+/*.card1 +p {
+  color: orange;
+}*/
 
-.headings {color:rgb(49, 50, 37);
+.headings, h5 {color:rgb(49, 50, 37);
             font-size:x-large;
             text-align: center;
 }
 
-h5 {
+/*h5 {
  size: 200px;
  color: red;
  font-size: x-large;
 
-}
+}*/
 .btn-center {
   display: flex;
   justify-content: space-around;
