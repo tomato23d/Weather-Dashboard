@@ -5,6 +5,7 @@ function getWeather(){
    
    var outputToday = document.getElementById("today");
   // var outputArea = document.querySelector(".container-output");
+  var searchAgain = document.getElementById("search-again");
    
    var cityInput = document.getElementById("input-form");
    
@@ -74,6 +75,7 @@ function getWeather(){
                   }   
                })
                cityInput.value = " ";
+               searchAgain.textContent = city;
             };            
    
    function printCard(card){

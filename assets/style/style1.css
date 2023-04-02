@@ -76,7 +76,15 @@ section {flex: 80%};
 .btn-center {
   display: flex;
   justify-content: space-around;
-  
+  }
+
+.btn-center-length {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  border: solid 2px gray;
+  margin-left: auto;
+  margin-right: auto;
   }
 
 /*
