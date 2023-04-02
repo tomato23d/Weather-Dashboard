@@ -8,6 +8,8 @@ function getWeather(){
   var searchAgain = document.getElementById("search-again");
    
    var cityInput = document.getElementById("input-form");
+   var cityButton = document.querySelectorAll(".city-button");
+   var cityButton1 = document.getElementById("search-history");
    
    const cityHistoryArr = [];
    
@@ -89,12 +91,14 @@ function getWeather(){
          var knowWeather = JSON.parse(localStorage.getItem(search));
          if(card === 1) {
        
+
          var cityPrint = document.createElement("p");  
          var par = document.createElement("p");
          var par1 = document.createElement("p");
          var par2 = document.createElement("p");
          var par3 = document.createElement("p");
  
+
          cityPrint.textContent = knowWeather["city"];
          par.textContent = knowWeather["day"];
          par1.textContent = knowWeather["main"];
@@ -161,5 +165,7 @@ function getWeather(){
 };
    
    btnByCitySearch.addEventListener('click', getApiCity);
+   cityButton1.addEventListener('click', console.log("works"));
+   
 }
    getWeather();
