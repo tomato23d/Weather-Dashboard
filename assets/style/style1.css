@@ -78,7 +78,7 @@ section {flex: 80%};
   justify-content: space-around;
   }
 
-.btn-center-length {
+.btn-center-length > p {
   display: flex;
   justify-content: space-around;
   width: 80%;

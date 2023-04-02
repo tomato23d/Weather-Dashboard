@@ -9,7 +9,7 @@ function getWeather(){
    
    var cityInput = document.getElementById("input-form");
    
-   
+   const cityHistoryArr = [];
    
    var myKey = "612789a87d35fc20d850942f4f954d5d";
   // var weatherGeoUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=-33.8679&lon=151.2073&appid=bf4cae612aea9c8fdcead6bf50e7112e';
@@ -22,14 +22,14 @@ function getWeather(){
   
    
    let date = new Date();
-   console.log(date.getDate());
+  // console.log(date.getDate());
    
    var currentTime = dayjs().format('D.MMMM.YYYY_H:mm');
    
    
         function getApiCity(event){
            event.preventDefault();
-           
+          //clearSearch();
            var card = 0;
            var city = cityInput.value.trim();
            
@@ -65,10 +65,12 @@ function getWeather(){
                                 wind: Citydata.list[i].wind.speed*1.61,
                            };
                            search = city+card;
-                           console.log(search);
+                      
                            localStorage.setItem(search, JSON.stringify(dayForecastArray));
+                        
+
                         //   localStorage.setItem(city+day1+"|"+i, JSON.stringify(dayForecastArray));
-                       //    localStorage.setItem("1", JSON.stringify(dayForecastArray));
+                      
                        printCard(card);
                 }
                
@@ -76,6 +78,9 @@ function getWeather(){
                })
                cityInput.value = " ";
                searchAgain.textContent = city;
+               cityHistoryArr.push(city);
+               localStorage.setItem("city", JSON.stringify(cityHistoryArr));
+               searchHistory();
             };            
    
    function printCard(card){
@@ -133,15 +138,27 @@ function getWeather(){
    };
 } ;  
  
-//     function clearSearch(){
-//        cityInput.value = " ";
+    function clearSearch(){
+     
 //        cityPrint.textContent = " ";   
-//        par.textContent = " ";
-//        par1.textContent = " ";
-//        par2.textContent = " ";
-//        par3.textContent = " ";
-// };
+//        
+      //  par1.remove;
+      //  par2.remove;
+      //  par3.remove;
    
+};
+   
+
+   function searchHistory (){
+   var cityHistory = JSON.parse(localStorage.getItem("city"));
+ 
+   for (var a = 0; a < cityHistory.length; a++) {
+        var city1 = document.createElement("p");
+        city1.textContent = cityHistory[a];
+        searchAgain.appendChild(city1);
+   };
+
+};
    
    btnByCitySearch.addEventListener('click', getApiCity);
 }
