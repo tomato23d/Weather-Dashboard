@@ -1,25 +1,24 @@
 function getWeather(){
 
-   var btnSearch = document.getElementById("search-apig");
+  
    var btnByCitySearch = document.getElementById("search-apicity");
    
    var outputToday = document.getElementById("today");
-   var outputArea = document.querySelector(".container-output");
+  // var outputArea = document.querySelector(".container-output");
    
    var cityInput = document.getElementById("input-form");
    
    
    
    var myKey = "612789a87d35fc20d850942f4f954d5d";
-   var weatherGeoUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=-33.8679&lon=151.2073&appid=bf4cae612aea9c8fdcead6bf50e7112e';
+  // var weatherGeoUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=-33.8679&lon=151.2073&appid=bf4cae612aea9c8fdcead6bf50e7112e';
    
-   const cityForecast = []; 
    var feels = " ";
    var temp = " ";
    var main = " ";
    var wind = " ";
    var humidity = " ";
-   var card = 0;
+  
    
    let date = new Date();
    console.log(date.getDate());
@@ -29,7 +28,8 @@ function getWeather(){
    
         function getApiCity(event){
            event.preventDefault();
-      
+           
+           var card = 0;
            var city = cityInput.value.trim();
            
            var weatherCityUrl = 'https://api.openweathermap.org/data/2.5/forecast?q='+ city+ '&appid=' + myKey;
@@ -63,19 +63,23 @@ function getWeather(){
                                 main: Citydata.list[i].weather[0].description,
                                 wind: Citydata.list[i].wind.speed*1.61,
                            };
-                           localStorage.setItem(card, JSON.stringify(dayForecastArray));
+                           search = city+card;
+                           console.log(search);
+                           localStorage.setItem(search, JSON.stringify(dayForecastArray));
                         //   localStorage.setItem(city+day1+"|"+i, JSON.stringify(dayForecastArray));
                        //    localStorage.setItem("1", JSON.stringify(dayForecastArray));
                        printCard(card);
                 }
                
                   }   
-               })};            
+               })
+               cityInput.value = " ";
+            };            
    
    function printCard(card){
-      console.log(card);
+   
      
-         var knowWeather = JSON.parse(localStorage.getItem(card));
+         var knowWeather = JSON.parse(localStorage.getItem(search));
          if(card === 1) {
        
          var cityPrint = document.createElement("p");  
@@ -105,8 +109,8 @@ function getWeather(){
 
 
 
-   function printWeather(){
-      var knowWeather = JSON.parse(localStorage.getItem(card));
+   function printWeather(card, cardOutput){
+      var knowWeather = JSON.parse(localStorage.getItem(search));
       var par = document.createElement("p");
       var par1 = document.createElement("p");
       var par2 = document.createElement("p");
@@ -114,7 +118,7 @@ function getWeather(){
      
       par.textContent = knowWeather["day"];
       par1.textContent = knowWeather["main"];
-      var t = knowWeather["temp"].toFixed(2);
+      var t = knowWeather["temp"].toFixed(0);
       par2.textContent = "Temp: " +t +"'C";
       par3.textContent = "Humidity: " +knowWeather["humidity"]+ " %";
      
@@ -127,9 +131,14 @@ function getWeather(){
    };
 } ;  
  
-   // function clearSearch(){
-   //     cityInput.value = " ";
-   //    par1.textContent = " ";};
+//     function clearSearch(){
+//        cityInput.value = " ";
+//        cityPrint.textContent = " ";   
+//        par.textContent = " ";
+//        par1.textContent = " ";
+//        par2.textContent = " ";
+//        par3.textContent = " ";
+// };
    
    
    btnByCitySearch.addEventListener('click', getApiCity);
