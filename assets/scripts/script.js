@@ -12,6 +12,8 @@ function getWeather(){
    var cityButton1 = document.getElementById("search-history");
    
    const cityHistoryArr = [];
+   //if there is something in localStorage, get the items and add them to the array
+
    
    var myKey = "612789a87d35fc20d850942f4f954d5d";
   // var weatherGeoUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=-33.8679&lon=151.2073&appid=bf4cae612aea9c8fdcead6bf50e7112e';
@@ -31,7 +33,7 @@ function getWeather(){
    
         function getApiCity(event){
            event.preventDefault();
-          //clearSearch();
+        
            var card = 0;
            var city = cityInput.value.trim();
            
@@ -90,7 +92,7 @@ function getWeather(){
      
          var knowWeather = JSON.parse(localStorage.getItem(search));
          if(card === 1) {
-       
+            outputToday.innerHTML = " ";
 
          var cityPrint = document.createElement("p");  
          var par = document.createElement("p");
@@ -114,13 +116,15 @@ function getWeather(){
       }  
       
       else if (card >= 2 && card <= 5){
+       
          var cardOutput = document.getElementById(card);
          printWeather(card, cardOutput);  
         }
 
 
-
    function printWeather(card, cardOutput){
+      cardOutput.innerHTML = " ";
+
       var knowWeather = JSON.parse(localStorage.getItem(search));
       var par = document.createElement("p");
       var par1 = document.createElement("p");
@@ -142,15 +146,12 @@ function getWeather(){
    };
 } ;  
  
-    function clearSearch(){
+//     function clearSearch(){
      
-//        cityPrint.textContent = " ";   
-//        
-      //  par1.remove;
-      //  par2.remove;
-      //  par3.remove;
-   
-};
+//       outputToday.innerHTML = " ";
+//       cardOutput.innerHTML = " ";
+      
+// };
    
 
    function searchHistory (){
@@ -165,7 +166,7 @@ function getWeather(){
 };
    
    btnByCitySearch.addEventListener('click', getApiCity);
-   cityButton1.addEventListener('click', console.log("works"));
+ //  cityButton1.addEventListener('click', console.log("works"));
    
 }
    getWeather();
