@@ -1,3 +1,7 @@
+
+var btnStartSearch = document.getElementById("start-search");
+var cityStart = document.getElementById("input-start");
+
 function getWeather(){
 
   
@@ -8,8 +12,9 @@ function getWeather(){
   var searchAgain = document.getElementById("search-again");
    
    var cityInput = document.getElementById("input-form");
-   var cityButton = document.querySelectorAll(".city-button");
-   var cityButton1 = document.getElementById("search-history");
+
+   //var cityButton = document.querySelectorAll(".city-button");
+  // var cityButton1 = document.getElementById("search-history");
    
    const cityHistoryArr = [];
    //if there is something in localStorage, get the items and add them to the array
@@ -26,7 +31,7 @@ function getWeather(){
   
    
    let date = new Date();
-  // console.log(date.getDate());
+  console.log(date.getDate());
    
    var currentTime = dayjs().format('D.MMMM.YYYY_H:mm');
    
@@ -80,17 +85,20 @@ function getWeather(){
                
                   }   
                })
+         // under development for the search history list 
                cityInput.value = " ";
                searchAgain.textContent = city;
                cityHistoryArr.push(city);
                localStorage.setItem("city", JSON.stringify(cityHistoryArr));
                searchHistory();
+           //this is to close getApiCity();
             };            
    
    function printCard(card){
    
      
          var knowWeather = JSON.parse(localStorage.getItem(search));
+         // print into main board the forecast for today;
          if(card === 1) {
             outputToday.innerHTML = " ";
 
@@ -116,7 +124,7 @@ function getWeather(){
       }  
       
       else if (card >= 2 && card <= 5){
-       
+       // print into cards the forecast available for the next few days
          var cardOutput = document.getElementById(card);
          printWeather(card, cardOutput);  
         }
@@ -158,7 +166,8 @@ function getWeather(){
    var cityHistory = JSON.parse(localStorage.getItem("city"));
  
    for (var a = 0; a < cityHistory.length; a++) {
-        var city1 = document.createElement("p");
+        var city1 = document.createElement("button");
+        city1.setAttribute("class", "history");
         city1.textContent = cityHistory[a];
         searchAgain.appendChild(city1);
    };
@@ -170,3 +179,10 @@ function getWeather(){
    
 }
    getWeather();
+
+// function getWeather(event){
+//    event.preventDefault();
+//    console.log(cityStart);
+// }
+
+//    btnStartSearch.addEventListener('click', getWeather(cityStart) );
