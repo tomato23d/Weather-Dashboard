@@ -13,8 +13,8 @@ function getWeather(){
    
    var cityInput = document.getElementById("input-form");
 
-   //var cityButton = document.querySelectorAll(".city-button");
-  // var cityButton1 = document.getElementById("search-history");
+   //var cityButton1 = document.querySelectorAll(".city-button");
+   var cityButton = document.getElementById("history");
    
    const cityHistoryArr = [];
    //if there is something in localStorage, get the items and add them to the array
@@ -167,18 +167,21 @@ function getWeather(){
  
    for (var a = 0; a < cityHistory.length; a++) {
         var city1 = document.createElement("button");
-        city1.setAttribute("class", "history");
-        city1.textContent = cityHistory[a];
-        searchAgain.appendChild(city1);
+      //  city1.setAttribute("class", "history");
+         city1.id = cityHistory[a];
+         city1.textContent = cityHistory[a];
+         searchAgain.appendChild(city1);
    };
 
 };
    
    btnByCitySearch.addEventListener('click', getApiCity);
- //  cityButton1.addEventListener('click', console.log("works"));
+   
    
 }
    getWeather();
+
+   cityButton.addEventListener('click', console.log("works"));
 
 // function getWeather(event){
 //    event.preventDefault();
