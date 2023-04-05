@@ -9,37 +9,54 @@
       <link rel="stylesheet" href="./assets/style/style1.css"/>
       <title>Weather Dashboard </title>
   </head>
-  <body>
-    
+<body>
    
-      <header class="class_heading">
-          <h3 class = "headings" >Weather Dashboard </h3>
-          <p class = "sub-headings">Rain or sunshine, have a great time</p>
-        </header> 
-  <main>
+        <header class="class_heading">
+            <h4 class = "sub-headings" >Weather Dashboard </h4> 
+            <p class = "sub-headings">Rain or sunshine, have a great time</p>
+        </header>  
+<main>
   <aside>
      
       <div class = "container-search">
-
-             <form id = "search-form">
+            <form id = "search-form">
           
-                  <label class="form-label" > Please enter a city : </label>
+                  <label class="form-label" > Search for a City : </label>
                   <br>
-                  <input type = "text" placeholder  = "city" id = "input-start"/>
+                  <input type = "text" placeholder  = "city" id = "input-form"/>
                   <br>
-                
-                <br>
-                 
-                  <div class = "btn-center-length" >
+            </form>
+                  <br>
+                  
+                  <div class = "btn-center">
+                      <button id = "search-apicity"> Search by city :</button>
+                  </div>
+
+                  <!-- append a new city to the list of cities searched -->
+                  <div class = "btn-center-length" id = "search-again">
+                  </div>   
+                 <br>
+
                     
-                    <button id = "start-search">Get weather forecast :</button>
-                
-                  </div>  
-                </form> 
-    </div>
-    </aside>
+      </div>
+  </aside>
+
   <section>
-   
+      <div class = "container-output">
+          <div class = "board">
+              <h5 id = "today"> </h5>
+          </div>
+          <br>
+          <div class = "cards">
+           
+              <section class = "card1" id = "2"> </section>
+              <section class = "card1" id = "3"> </section>
+              <section class = "card1" id = "4"> </section>
+              <section class = "card1" id = "5"> </section>
+            <!--  <section class = "card1" id = "6"> </section>-->
+          </div>
+      </div>
+  </section>
   
 </main>
 
@@ -53,5 +70,5 @@ crossorigin="anonymous"
        
             
   
-    </body>
+</body>
 </html>      
