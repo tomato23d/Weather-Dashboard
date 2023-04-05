@@ -1,4 +1,3 @@
-
 var btnStartSearch = document.getElementById("start-search");
 var cityStart = document.getElementById("input-start");
 
@@ -14,6 +13,8 @@ function getWeather() {
    var searchAgain = document.getElementById("search-again");
 
    var cityInput = document.getElementById("input-form");
+   var areaHistory = document.getElementById("areaCityHistory");
+ 
 
 
    const cityHistoryArr = [];
@@ -85,7 +86,7 @@ function getWeather() {
       // under development for the search history list 
       cityInput.value = " ";
       searchAgain.textContent = " ";
-    //  searchAgain.textContent = city;
+    
       cityHistoryArr.push(city);
       localStorage.setItem("city", JSON.stringify(cityHistoryArr));
       searchHistory();
@@ -161,25 +162,63 @@ function getWeather() {
 
       for (var a = 0; a < cityHistory.length; a++) {
          var city1 = document.createElement("button");
-         
+        
+         //populate cities that already have been searched
          city1.id = cityHistory[a];
          city1.textContent = cityHistory[a];
          city1.classList.add('history-button');
          searchAgain.appendChild(city1);
+
+         //populate cities searched, now with pre-built buttons
+         areaHistory.children[a].textContent = cityHistory[a];
+         areaHistory.children[a].id = "c_"+cityHistory[a];
+         console.log(areaHistory.children[a]);
       };
 
    };
+   // test click event target on city history buttons saved into searchAgain area
+   function buttonClick(event) {
+      event.currentTarget.setAttribute("style", "background-color: red");
+  //    var city = button.getAttribute('id');
+  //    console.log(city);
+   };
+  
+   function knewFunction(event){
+      event.preventDefault();
 
+   }
+
+   // start city forecast search for the first time
    btnByCitySearch.addEventListener('click', getApiCity);
 
+   //history search populated into search-again
+   searchAgain.addEventListener('click', buttonClick);
 
+   //history search populated into pre-built buttons: first button
+   areaHistory.children[0].addEventListener('click', function(event){
+      event.preventDefault();
+      console.log(areaHistory.children[0].textContent);
+      city = areaHistory.children[0].textContent;
+      for (card = 1; card <= 5; card++) {search = city+card;
+         printBoard(card);
+         console.log(search); }
+      });
+      
+   //history search populated into pre-built buttons: second button
+   areaHistory.children[1].addEventListener('click', function(event){
+      event.preventDefault();
+      console.log(areaHistory.children[1].textContent);
+      city = areaHistory.children[1].textContent;
+      for (card = 1; card <= 5; card++) {search = city+card;
+         printBoard(card);
+         console.log(search); }
+      });
+
+   
+   areaHistory.children[2].addEventListener('click', console.log(areaHistory.children[2].id));
+    // areaHistory.children[0].addEventListener('click', knewFunction);
 }
 getWeather();
-// function buttonClick(event) {
-//    var button = event.target;
-//    var city = button.getAttribute('id');
-//    console.log(city);
-// }
 
 //searchAgain.addEventListener('click', buttonClick);
 
