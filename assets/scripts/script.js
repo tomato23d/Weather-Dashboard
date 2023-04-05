@@ -1,8 +1,8 @@
-var btnStartSearch = document.getElementById("start-search");
-var cityStart = document.getElementById("input-start");
+// var btnStartSearch = document.getElementById("start-search");
+// var cityStart = document.getElementById("input-start");
 
-
-
+var container = document.querySelector(".container-output");
+console.log(container);
 function getWeather() {
 
 
@@ -14,6 +14,8 @@ function getWeather() {
 
    var cityInput = document.getElementById("input-form");
    var areaHistory = document.getElementById("areaCityHistory");
+
+   
  
 
 
@@ -40,6 +42,7 @@ function getWeather() {
    function getApiCity(event) {
       event.preventDefault();
 
+      container.style.display="block";
       var card = 0;
       var city = cityInput.value.trim();
 
@@ -178,15 +181,21 @@ function getWeather() {
    };
    // test click event target on city history buttons saved into searchAgain area
    function buttonClick(event) {
-      event.currentTarget.setAttribute("style", "background-color: red");
-  //    var city = button.getAttribute('id');
-  //    console.log(city);
+      event.target.setAttribute("style", "background-color: red");
+      city = event.target.id;
+  //    city = button.getAttribute('id');
+      console.log(event.target.id);
+      for (card = 1; card <= 5; card++) {search = city+card;
+         printBoard(card);
+         console.log(search); }
+
+
    };
   
-   function knewFunction(event){
-      event.preventDefault();
+   // function knewFunction(event){
+   //    event.preventDefault();
 
-   }
+   // }
 
    // start city forecast search for the first time
    btnByCitySearch.addEventListener('click', getApiCity);
@@ -222,4 +231,4 @@ getWeather();
 
 //searchAgain.addEventListener('click', buttonClick);
 
-
+//btnStartSearch.addEventListener('click', getApiCity);
