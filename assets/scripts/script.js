@@ -1,7 +1,7 @@
 
 
 var container = document.querySelector(".container-output");
-console.log(container);
+
 function getWeather() {
 
 
@@ -11,20 +11,18 @@ function getWeather() {
    
    var searchAgain = document.getElementById("search-again");
 
-   var cityInput = document.getElementById("input-form");
-   var areaHistory = document.getElementById("areaCityHistory");
+   var form = document.getElementById("search-form");
 
-   
+   var cityInput = document.getElementById("input-form");
+
+   var publishMessage = document.getElementById("message")
  
 
 
    const cityHistoryArr = [];
-   //if there is something in localStorage, get the items and add them to the array
-
-
+   
    var myKey = "612789a87d35fc20d850942f4f954d5d";
-   // var weatherGeoUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=-33.8679&lon=151.2073&appid=bf4cae612aea9c8fdcead6bf50e7112e';
-
+   
    var feels = " ";
    var temp = " ";
    var main = " ";
@@ -33,7 +31,7 @@ function getWeather() {
 
 
    let date = new Date();
-   console.log(date.getDate());
+   //console.log(date.getDate());
 
    var currentTime = dayjs().format('D.MMMM.YYYY_H:mm');
 
@@ -41,10 +39,16 @@ function getWeather() {
    function getApiCity(event) {
       event.preventDefault();
 
-      container.style.display="block";
+      
       var card = 0;
       var city = cityInput.value.trim();
 
+      if (!city){
+         publishMessage.textContent = "Please enter a city below";
+         return;
+       };
+       container.style.display="block";
+       publishMessage.textContent = " ";
       var weatherCityUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&appid=' + myKey;
 
 
@@ -63,6 +67,7 @@ function getWeather() {
                var day1 = Citydata.list[i].dt_txt.substring(8, 10);
                var time1 = Citydata.list[i].dt_txt.substring(11, 13);
 
+            // 9am is the most popular time to check the weather
                if (time1 === "09") {
                   card = card + 1;
                   var dayForecastArray = {
@@ -85,7 +90,7 @@ function getWeather() {
 
             }
          })
-      // under development for the search history list 
+      // setup for the search history list 
       cityInput.value = " ";
       searchAgain.textContent = " ";
     
@@ -139,6 +144,7 @@ function getWeather() {
 
          var knowWeather = JSON.parse(localStorage.getItem(search));
          var par = document.createElement("p");
+         par.style.fontWeight = "bold";
          var par1 = document.createElement("p");
          var par2 = document.createElement("p");
          var par3 = document.createElement("p");
@@ -162,7 +168,7 @@ function getWeather() {
    };
 
    
-
+   // render cities that have already been searched
    function searchHistory() { 
       searchAgain.innerHTML = " ";
       
@@ -170,8 +176,7 @@ function getWeather() {
 
       for (var a = 0; a < cityHistory.length; a++) {
          var city1 = document.createElement("button");
-        
-         //populate cities that already have been searched
+
          city1.id = cityHistory[a];
          city1.textContent = cityHistory[a];
          city1.classList.add('history-button');
@@ -181,23 +186,22 @@ function getWeather() {
       };
 
    };
-   // test click event target on city history buttons saved into searchAgain area
+   // print the forecast for cities previously searched
    function buttonClick(event) {
-      
-      city = event.target.id;
+         city = event.target.id;
   
-      console.log(event.target.id);
       for (card = 1; card <= 5; card++) {search = city+card;
          printBoard(card);
-         console.log(search); 
+        // console.log(search); 
       }
    };
  
 
    // start city forecast search for the first time
    btnByCitySearch.addEventListener('click', getApiCity);
+   form.addEventListener("submit", getApiCity);
 
-   //history search populated into search-again
+   //print the forecast for cities previously searched
    searchAgain.addEventListener('click', buttonClick);
 
 }

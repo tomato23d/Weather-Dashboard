@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" />-->
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-      <!-- <link rel="stylesheet" href="./assets/style/style.css"/>  -->
+      
       <link rel="stylesheet" href="./assets/style/style1.css"/>
       <title>Weather Dashboard </title>
   </head>
@@ -19,6 +19,7 @@
   <aside>
      
       <div class = "container-search">
+            <h5 id = "message"> </h5>
             <form id = "search-form">
           
                   <label class="form-label" > Search for a City : </label>
@@ -28,16 +29,14 @@
             </form>
                   <br>
                   
-                  <div class = "btn-center">
+                  <div class = "btn-center-length">
                       <button id = "search-apicity"> Search by city :</button>
                   </div>
 
                   <!-- append a new city to the list of cities searched -->
                   <div class = "btn-center-length" id = "search-again">
                   </div>   
-                 <br>
-
-                    
+                 <br>                   
       </div>
   </aside>
 
@@ -53,7 +52,8 @@
               <section class = "card1" id = "3"> </section>
               <section class = "card1" id = "4"> </section>
               <section class = "card1" id = "5"> </section>
-            <!--  <section class = "card1" id = "6"> </section>-->
+            <!--  extra card for an additional day on api data call
+              <section class = "card1" id = "6"> </section>-->
           </div>
       </div>
   </section>
@@ -66,9 +66,7 @@ integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
 crossorigin="anonymous"
 ></script>
       
-<script src = "./assets/scripts/script.js"></script>
-       
-            
+<script src = "./assets/scripts/script.js"></script>          
   
 </body>
 </html>      
