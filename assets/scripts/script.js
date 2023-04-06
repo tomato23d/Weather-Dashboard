@@ -108,20 +108,23 @@ function getWeather() {
          var par1 = document.createElement("p");
          var par2 = document.createElement("p");
          var par3 = document.createElement("p");
+         var par4 = document.createElement("p");
 
 
          cityPrint.textContent = knowWeather["city"];
          par.textContent = knowWeather["day"];
          par1.textContent = knowWeather["main"];
          var t = knowWeather["temp"].toFixed(2);
-         par2.textContent = "Temp: " + t + "'C";
+         par2.textContent = "Temperature: " + t + "'C";
          par3.textContent = "Humidity: " + knowWeather["humidity"] + " %";
+         par4.textContent = "Wind speed: " + knowWeather["wind"].toFixed(1) + "km/h";
 
          outputToday.appendChild(cityPrint);
          outputToday.appendChild(par);
          outputToday.appendChild(par1);
          outputToday.appendChild(par2);
          outputToday.appendChild(par3);
+         outputToday.appendChild(par4);
       }
 
       else if (card >= 2 && card <= 5) {
@@ -139,18 +142,21 @@ function getWeather() {
          var par1 = document.createElement("p");
          var par2 = document.createElement("p");
          var par3 = document.createElement("p");
+         var par4 = document.createElement("p");
 
          par.textContent = knowWeather["day"];
          par1.textContent = knowWeather["main"];
          var t = knowWeather["temp"].toFixed(0);
-         par2.textContent = "Temp: " + t + "'C";
+         par2.textContent = "Temperature: " + t + "'C";
          par3.textContent = "Humidity: " + knowWeather["humidity"] + " %";
+         par4.textContent = "Wind speed: " + knowWeather["wind"].toFixed(1) + "km/h";
 
 
          cardOutput.appendChild(par);
          cardOutput.appendChild(par1);
          cardOutput.appendChild(par2);
          cardOutput.appendChild(par3);
+         cardOutput.appendChild(par4);
 
       };
    };
