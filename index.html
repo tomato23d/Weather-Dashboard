@@ -9,40 +9,42 @@
       <link rel="stylesheet" href="./assets/style/style1.css"/>
       <title>Weather Dashboard </title>
   </head>
-  <body>
+<body>
    
         <header class="class_heading">
-          <h3 class = "headings" >Weather Dashboard </h3> 
+            <h4 class = "sub-headings" id = "sh1" >Weather Dashboard </h4> 
+            <p class = "sub-headings" id = "sh2">Rain or sunshine, have a great time</p>
         </header>  
 <main>
   <aside>
      
       <div class = "container-search">
-
-             <form id = "search-form">
+            <form id = "search-form">
           
                   <label class="form-label" > Search for a City : </label>
                   <br>
                   <input type = "text" placeholder  = "city" id = "input-form"/>
                   <br>
-                </form> 
+            </form>
+                  <br>
+                  
                   <div class = "btn-center">
-                    <p id = "btn-center"><button id = "search-apicity"> Search by city :</button></p>
-                  </div> 
+                      <button id = "search-apicity"> Search by city :</button>
+                  </div>
+
+                  <!-- append a new city to the list of cities searched -->
                   <div class = "btn-center-length" id = "search-again">
-                 <!-- <a href="search again" class="btn-center-length" > This is a city </a> -->     
-                
-                  <p> hello1 </p>
-              
-                <p> hello2 </p>
-                </div>  
-    </div>
-    </aside>
-      <section>
+                  </div>   
+                 <br>
+
+                    
+      </div>
+  </aside>
+
+  <section>
       <div class = "container-output">
           <div class = "board">
               <h5 id = "today"> </h5>
-              
           </div>
           <br>
           <div class = "cards">
@@ -54,7 +56,7 @@
             <!--  <section class = "card1" id = "6"> </section>-->
           </div>
       </div>
-      </section>
+  </section>
   
 </main>
 
@@ -68,5 +70,5 @@ crossorigin="anonymous"
        
             
   
-    </body>
+</body>
 </html>      
